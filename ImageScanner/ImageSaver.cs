@@ -1,12 +1,11 @@
-﻿using System;
+﻿using ImageScanner.Settings;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using ImageScanner.Settings;
 
 namespace ImageScanner
 {
