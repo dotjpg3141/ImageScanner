@@ -33,6 +33,7 @@
             this.pnlScannedImages = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnOpenOutputFolder = new System.Windows.Forms.Button();
+            this.btnTaggingRules = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,7 +49,7 @@
             // 
             // btnSettings
             // 
-            this.btnSettings.Location = new System.Drawing.Point(195, 5);
+            this.btnSettings.Location = new System.Drawing.Point(287, 5);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(86, 23);
             this.btnSettings.TabIndex = 2;
@@ -74,6 +75,7 @@
             // 
             this.flowLayoutPanel1.Controls.Add(this.btnScanImage);
             this.flowLayoutPanel1.Controls.Add(this.btnOpenOutputFolder);
+            this.flowLayoutPanel1.Controls.Add(this.btnTaggingRules);
             this.flowLayoutPanel1.Controls.Add(this.btnSettings);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -90,6 +92,16 @@
             this.btnOpenOutputFolder.TabIndex = 3;
             this.btnOpenOutputFolder.Text = "Output Folder";
             this.btnOpenOutputFolder.UseVisualStyleBackColor = true;
+            // 
+            // btnTaggingRules
+            // 
+            this.btnTaggingRules.Location = new System.Drawing.Point(195, 5);
+            this.btnTaggingRules.Name = "btnTaggingRules";
+            this.btnTaggingRules.Size = new System.Drawing.Size(86, 23);
+            this.btnTaggingRules.TabIndex = 4;
+            this.btnTaggingRules.Text = "Tagging Rules";
+            this.btnTaggingRules.UseVisualStyleBackColor = true;
+            this.btnTaggingRules.Click += new System.EventHandler(this.btnTaggingRules_Click);
             // 
             // frmMain
             // 
@@ -112,6 +124,7 @@
         private System.Windows.Forms.FlowLayoutPanel pnlScannedImages;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button btnOpenOutputFolder;
+        private System.Windows.Forms.Button btnTaggingRules;
     }
 }
 

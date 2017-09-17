@@ -43,25 +43,15 @@ namespace ImageScanner
                 {
                     var image = kvp.Key;
                     var info = kvp.Value;
-                    info.Text = ocr.ExtractText((Bitmap)image.Clone());
+                    info.Text = ocr.ExtractText(image);
                 }
             }
         }
 
         private void RunTagging(ImageInfo imageInfo)
         {
-            var text = imageInfo.Text.ToLowerInvariant();
-            foreach (var taggingRule in Settings.Tagging)
-            {
-                var ruleText = taggingRule.Text.ToLowerInvariant();
-                if (text.Contains(ruleText))
-                {
-                    imageInfo.Tag = taggingRule.Tag;
-                    return;
-                }
-            }
-
-            imageInfo.Tag = "image";
+            var matchedRule = Settings.Tagging.FirstOrDefault(rule => rule.Matches(imageInfo));
+            imageInfo.Tag = matchedRule?.Tag ?? "default";
         }
 
         private void RunResolvePath(ImageInfo imageInfo)

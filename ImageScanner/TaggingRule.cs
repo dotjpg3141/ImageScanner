@@ -8,13 +8,27 @@ namespace ImageScanner
 {
     public class TaggingRule
     {
-        public string Text { get; set; }
+        public string RuleName { get; set; }
         public string Tag { get; set; }
+        public ConditionOperator ConditionOperator { get; set; }
+        public List<Condition> Conditions { get; set; }
 
-        public override string ToString()
+        public bool Matches(ImageInfo imageInfo)
         {
-            return $"'{Text}' -> '{Tag}'";
-        }
+            switch (ConditionOperator)
+            {
+                case ConditionOperator.All:
+                    return Conditions.All(c => c.Matches(imageInfo));
 
+                case ConditionOperator.Any:
+                    return Conditions.Any(c => c.Matches(imageInfo));
+
+                case ConditionOperator.None:
+                    return !Conditions.Any(c => c.Matches(imageInfo));
+
+                default:
+                    throw new InvalidOperationException("unexpected enum value " + ConditionOperator);
+            }
+        }
     }
 }

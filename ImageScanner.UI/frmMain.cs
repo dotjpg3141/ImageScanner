@@ -103,6 +103,15 @@ namespace ImageScanner.UI
             }
         }
 
+        private void btnTaggingRules_Click(object sender, EventArgs e)
+        {
+            var frmTaggingRules = new frmTaggingRuleEditor();
+            if (frmTaggingRules.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+        }
+
         private static void LogError(string message = null, Exception exception = null)
         {
 
@@ -157,6 +166,5 @@ namespace ImageScanner.UI
                 LogError("Cannot save settings", ex);
             }
         }
-
     }
 }

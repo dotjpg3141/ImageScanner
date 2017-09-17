@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,7 @@ namespace ImageScanner
         public string ImageFilePath { get; set; }
         public string TextFilePath { get; set; }
 
+        public Bitmap Image { get; set; }
         public string Text { get; set; }
 
     }
