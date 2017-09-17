@@ -59,14 +59,14 @@
   <ItemGroup>
     <Compile Include="TaggingSystem\Condition.cs" />
     <Compile Include="TaggingSystem\ConditionOperator.cs" />
-    <Compile Include="FolderNameEditor2.cs" />
+    <Compile Include="Settings\FolderNameEditor2.cs" />
     <Compile Include="ImageInfo.cs" />
     <Compile Include="ImageSaver.cs" />
     <Compile Include="ImageScanner.cs" />
-    <Compile Include="TaggingSystem\OCR.cs" />
+    <Compile Include="OCR.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TaggingSystem\RuleConditionAtrribute.cs" />
-    <Compile Include="Settings.cs" />
+    <Compile Include="Settings\Config.cs" />
     <Compile Include="TaggingSystem\TaggingRule.cs" />
     <Compile Include="TaggingSystem\ContainsTextCondition.cs" />
   </ItemGroup>

@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ImageScanner.Settings;
 
 namespace ImageScanner
 {
@@ -14,7 +15,7 @@ namespace ImageScanner
         private const string DateTimeFormat = "yyyy-MM-dd-HH-mm-ss";
         private const string IdFormat = "0000";
 
-        public Settings Settings { get; set; }
+        public Config Settings { get; set; }
 
         public void Save(List<Bitmap> images)
         {

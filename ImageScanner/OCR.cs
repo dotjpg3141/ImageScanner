@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Tesseract;
 
-namespace ImageScanner.TaggingSystem
+namespace ImageScanner
 {
     public class OCR : IDisposable
     {

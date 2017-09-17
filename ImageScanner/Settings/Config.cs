@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImageScanner.TaggingSystem;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing.Imaging;
@@ -9,9 +10,9 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using TwainDotNet;
 
-namespace ImageScanner
+namespace ImageScanner.Settings
 {
-    public class Settings : ICloneable
+    public class Config : ICloneable
     {
         [Category("Scan")] public bool UseDocumentFeeder { get; set; }
         [Category("Scan")] public bool ShowTwainUI { get; set; }
@@ -33,7 +34,7 @@ namespace ImageScanner
         public string OcrDataFolder { get; set; }
         [Category("OCR")] public string OcrLanguage { get; set; }
 
-        public Settings()
+        public Config()
         {
             this.UseDocumentFeeder = false;
             this.ShowTwainUI = false;
@@ -84,32 +85,32 @@ namespace ImageScanner
             }
         }
 
-        public static Settings LoadFromFile(string file)
+        public static Config LoadFromFile(string file)
         {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Settings));
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Config));
             using (var reader = new FileStream(file, FileMode.Open))
             {
-                return (Settings)xmlSerializer.Deserialize(reader);
+                return (Config)xmlSerializer.Deserialize(reader);
             }
         }
 
         public void SaveToFile(string file)
         {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Settings));
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Config));
             using (var writer = new FileStream(file, FileMode.Create))
             {
                 xmlSerializer.Serialize(writer, this);
             }
         }
 
-        public Settings Clone()
+        public Config Clone()
         {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Settings));
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Config));
             using (var memory = new MemoryStream())
             {
                 xmlSerializer.Serialize(memory, this);
                 memory.Position = 0;
-                return (Settings)xmlSerializer.Deserialize(memory);
+                return (Config)xmlSerializer.Deserialize(memory);
             }
         }
 

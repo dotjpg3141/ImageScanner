@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImageScanner.Settings;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,9 @@ namespace ImageScanner.UI
 {
     public partial class frmSettings : Form
     {
-        public Settings Settings
+        public Config Settings
         {
-            get => (Settings)propertyGrid1.SelectedObject;
+            get => (Config)propertyGrid1.SelectedObject;
             set => propertyGrid1.SelectedObject = value;
         }
 
@@ -37,7 +38,7 @@ namespace ImageScanner.UI
 
         private void btnRestoreDefaultSettings_Click(object sender, EventArgs e)
         {
-            Settings = new Settings();
+            Settings = new Config();
         }
     }
 }

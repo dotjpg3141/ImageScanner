@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImageScanner.Settings;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,7 +19,7 @@ namespace ImageScanner.UI
         private static readonly string SettingsFile = "settings.xml";
 
         private ImageScan scanner;
-        private Settings settings;
+        private Config settings;
 
         public frmMain()
         {
@@ -145,12 +146,12 @@ namespace ImageScanner.UI
         {
             try
             {
-                settings = Settings.LoadFromFile(SettingsFile);
+                settings = Config.LoadFromFile(SettingsFile);
             }
             catch (Exception ex)
             {
                 LogError("Cannot read settings", ex);
-                settings = new Settings();
+                settings = new Config();
 
             }
         }
