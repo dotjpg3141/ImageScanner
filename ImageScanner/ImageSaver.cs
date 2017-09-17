@@ -12,7 +12,7 @@ namespace ImageScanner
     public class ImageSaver
     {
         private const string DateTimeFormat = "yyyy-MM-dd-HH-mm-ss";
-        private const string IdFormat = "00000";
+        private const string IdFormat = "0000";
 
         public Settings Settings { get; set; }
 
