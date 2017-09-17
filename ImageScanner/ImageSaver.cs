@@ -35,8 +35,6 @@ namespace ImageScanner
             Foreach(imageInfos.Values, RunSaveText);
         }
 
-
-
         private void RunOcr(Dictionary<Bitmap, ImageInfo> imageInfos)
         {
             using (var ocr = new OCR(Settings.OcrDataFolder, Settings.OcrLanguage))
