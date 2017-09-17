@@ -1,4 +1,4 @@
-﻿namespace ImageScanner
+﻿namespace ImageScanner.TaggingSystem
 {
     public enum ConditionOperator
     {

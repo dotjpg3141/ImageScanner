@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ImageScanner
+namespace ImageScanner.TaggingSystem
 {
     public abstract class Condition
     {
