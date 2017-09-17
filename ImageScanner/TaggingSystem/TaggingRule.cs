@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,7 +12,7 @@ namespace ImageScanner.TaggingSystem
         public string RuleName { get; set; }
         public string Tag { get; set; }
         public ConditionOperator ConditionOperator { get; set; }
-        public List<Condition> Conditions { get; set; }
+        public List<Condition> Conditions { get; set; } = new List<Condition>();
 
         public bool Matches(ImageInfo imageInfo)
         {
@@ -29,6 +30,21 @@ namespace ImageScanner.TaggingSystem
                 default:
                     throw new InvalidOperationException("unexpected enum value " + ConditionOperator);
             }
+        }
+
+        public override string ToString()
+        {
+            return $"{RuleName}: {Tag}";
+        }
+
+        public static List<Type> AvailableConditions => RuleTypes.List;
+
+        private static class RuleTypes
+        {
+            public static List<Type> List = AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(assembly => assembly.GetTypes())
+                .Where(type => type.IsSubclassOf(typeof(Condition)) && type.GetCustomAttribute<RuleConditionAttribute>() != null)
+                .ToList();
         }
     }
 }

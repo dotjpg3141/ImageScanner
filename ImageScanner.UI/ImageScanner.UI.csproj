@@ -79,6 +79,12 @@
     <Compile Include="frmTaggingRuleEditor.Designer.cs">
       <DependentUpon>frmTaggingRuleEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTaggingRuleList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTaggingRuleList.Designer.cs">
+      <DependentUpon>frmTaggingRuleList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RuleConditionControl.cs">
@@ -95,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTaggingRuleEditor.resx">
       <DependentUpon>frmTaggingRuleEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTaggingRuleList.resx">
+      <DependentUpon>frmTaggingRuleList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

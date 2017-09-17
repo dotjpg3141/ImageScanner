@@ -52,7 +52,7 @@ namespace ImageScanner.UI
         {
             InitializeComponent();
 
-            var ruleItems = from type in RuleTypes.List
+            var ruleItems = from type in TaggingRule.AvailableConditions
                             let descr = type.GetCustomAttribute<RuleConditionAttribute>().Description
                             select new RuleConditionItem()
                             {
@@ -98,15 +98,5 @@ namespace ImageScanner.UI
                 return (Condition)Activator.CreateInstance(Type);
             }
         }
-
-        private static class RuleTypes
-        {
-            public static List<Type> List = AppDomain.CurrentDomain.GetAssemblies()
-                .SelectMany(assembly => assembly.GetTypes())
-                .Where(type => type.IsSubclassOf(typeof(Condition)) && type.GetCustomAttribute<RuleConditionAttribute>() != null)
-                .ToList();
-        }
-
-       
     }
 }

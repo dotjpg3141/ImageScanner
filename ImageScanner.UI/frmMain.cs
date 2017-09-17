@@ -93,8 +93,11 @@ namespace ImageScanner.UI
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
-            var frmSettings = new frmSettings();
-            frmSettings.Settings = settings.Clone();
+            var frmSettings = new frmSettings
+            {
+                Settings = settings.Clone()
+            };
+
             if (frmSettings.ShowDialog() == DialogResult.OK)
             {
                 settings = frmSettings.Settings;
@@ -106,14 +109,21 @@ namespace ImageScanner.UI
 
         private void btnTaggingRules_Click(object sender, EventArgs e)
         {
-            var frmTaggingRules = new frmTaggingRuleEditor();
+            var clonedSettings = settings.Clone();
+            var frmTaggingRules = new frmTaggingRuleList
+            {
+                SelectedRuleList = clonedSettings.Tagging.ToList()
+            };
+
             if (frmTaggingRules.ShowDialog() == DialogResult.OK)
             {
-
+                clonedSettings.Tagging = frmTaggingRules.SelectedRuleList.ToArray();
+                settings = clonedSettings;
+                SaveSettings();
             }
         }
 
-        private static void LogError(string message = null, Exception exception = null)
+        private static void LogError(string message = null, Exception exception = null, bool silent = false)
         {
 
             message = message ?? "Unexpected Exception";
@@ -121,8 +131,11 @@ namespace ImageScanner.UI
             string outputMessage = $"ERROR: {message} {exMsg}";
 
             Console.WriteLine(outputMessage);
-            MessageBox.Show(outputMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+            if (!silent)
+            {
+                MessageBox.Show(outputMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void pnlScannedImages_Resize(object sender, EventArgs e)
@@ -147,6 +160,11 @@ namespace ImageScanner.UI
             try
             {
                 settings = Config.LoadFromFile(SettingsFile);
+            }
+            catch (FileNotFoundException ex)
+            {
+                LogError("Cannot find settings", ex, silent:true);
+                settings = new Config();
             }
             catch (Exception ex)
             {

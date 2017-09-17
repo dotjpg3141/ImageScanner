@@ -17,12 +17,12 @@ namespace ImageScanner.UI
 
         public static void RequiresText(this ErrorProvider source, Control control, Func<string, bool> condition, string errorMessage)
         {
-            control.TextChanged += Control_TextChanged;
-            Control_TextChanged(null, null);
-
-            void Control_TextChanged(object sender, EventArgs e)
+            control.Validating += Control_Validating;
+            void Control_Validating(object sender, System.ComponentModel.CancelEventArgs e)
             {
-                source.SetError(control, condition(control.Text), errorMessage);
+                var hasError = condition(control.Text);
+                source.SetError(control, hasError, errorMessage);
+                e.Cancel = hasError;
             }
         }
 

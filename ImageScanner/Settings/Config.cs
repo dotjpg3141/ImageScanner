@@ -87,7 +87,7 @@ namespace ImageScanner.Settings
 
         public static Config LoadFromFile(string file)
         {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Config));
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Config), TaggingRule.AvailableConditions.ToArray());
             using (var reader = new FileStream(file, FileMode.Open))
             {
                 return (Config)xmlSerializer.Deserialize(reader);
@@ -96,7 +96,7 @@ namespace ImageScanner.Settings
 
         public void SaveToFile(string file)
         {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Config));
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Config), TaggingRule.AvailableConditions.ToArray());
             using (var writer = new FileStream(file, FileMode.Create))
             {
                 xmlSerializer.Serialize(writer, this);
@@ -105,7 +105,7 @@ namespace ImageScanner.Settings
 
         public Config Clone()
         {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Config));
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Config), TaggingRule.AvailableConditions.ToArray());
             using (var memory = new MemoryStream())
             {
                 xmlSerializer.Serialize(memory, this);
